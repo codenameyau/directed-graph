@@ -1,0 +1,32 @@
+{
+  "name": "graph.js",
+  "version": "1.0.0",
+  "description": "node package for directed and undirected graphs",
+  "main": "lib",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/codenameyau/graph.js.git"
+  },
+  "keywords": [
+    "directed",
+    "undirected",
+    "graph",
+    "cs",
+    "math"
+  ],
+  "author": "Jorge Yau <jyau01@citymail.cuny.edu>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/codenameyau/graph.js/issues"
+  },
+  "homepage": "https://github.com/codenameyau/graph.js",
+  "devDependencies": {
+    "gulp": "^3.8.10",
+    "gulp-rename": "^1.2.0",
+    "gulp-uglify": "^1.0.2",
+    "rimraf": "^2.2.8"
+  }
+}

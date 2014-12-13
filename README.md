@@ -1,7 +1,7 @@
 graph.js
 ========
 
-node package for weighted directed and undirected graphs
+node package for weighted directed graphs
 
 
 ###Running Tests

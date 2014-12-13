@@ -83,12 +83,16 @@ describe('Graph', function() {
       graph.addEdge('A', 'B');
       assert.strictEqual(graph.getSizeNeighbors('A'), 1);
       assert.strictEqual(graph.getSizeNeighbors('B'), 0);
+      assert.isTrue(graph.hasEdge('A', 'B'));
+      assert.isFalse(graph.hasEdge('B', 'A'));
     });
 
     it('should add an edge from A to C', function() {
       graph.addEdge('A', 'C');
       assert.strictEqual(graph.getSizeNeighbors('A'), 2);
       assert.strictEqual(graph.getSizeNeighbors('C'), 0);
+      assert.isTrue(graph.hasEdge('A', 'C'));
+      assert.isFalse(graph.hasEdge('C', 'A'));
     });
 
     it('should add an edge from B to A and C to A', function() {
@@ -96,15 +100,19 @@ describe('Graph', function() {
       graph.addEdge('C', 'A');
       assert.strictEqual(graph.getSizeNeighbors('B'), 1);
       assert.strictEqual(graph.getSizeNeighbors('C'), 1);
+      assert.isTrue(graph.hasEdge('B', 'A'));
+      assert.isTrue(graph.hasEdge('C', 'A'));
     });
 
-    it('should have a weighted edge A to D', function() {
+    it('should have a weighted edge from A to D', function() {
       var weight = 10;
-      var vertexA = graph.getVertex('A');
-      graph.addEdge('A', 'D', 10);
-      assert.strictEqual(vertexA);
+      var neighborsA = graph.getNeighbors('A');
+      graph.addEdge('A', 'D', weight);
+      assert.isTrue(graph.hasEdge('A', 'D'));
+      assert.strictEqual(neighborsA.B, 0);
+      assert.strictEqual(neighborsA.C, 0);
+      assert.strictEqual(neighborsA.D, weight);
     });
-
   });
 
 });

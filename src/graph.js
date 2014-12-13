@@ -49,16 +49,12 @@ Graph.prototype.hasVertex = function(name) {
   return this.graph.hasOwnProperty(name);
 };
 
-Graph.prototype.hasNeighbor = function(vertex, neighbor) {
+Graph.prototype.hasEdge = function(vertex, neighbor) {
   return this.graph[vertex].hasOwnProperty(neighbor);
 };
 
 Graph.prototype.addVertex = function(name) {
   this.graph[name] = {};
-};
-
-Graph.prototype.getVertex = function(name) {
-  return this.graph[name];
 };
 
 Graph.prototype.addEdge = function(vertex, neighbor, weight) {
@@ -69,6 +65,10 @@ Graph.prototype.addNeighbors = function(vertex, neighbors) {
   for (var i=0, len=neighbors.length; i<len; i++) {
     this.addEdge(vertex, neighbors[i]);
   }
+};
+
+Graph.prototype.getNeighbors = function(name) {
+  return this.graph[name];
 };
 
 module.exports = Graph;

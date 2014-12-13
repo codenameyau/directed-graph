@@ -77,25 +77,34 @@ describe('Graph', function() {
     graph.addVertex('A');
     graph.addVertex('B');
     graph.addVertex('C');
+    graph.addVertex('D');
 
     it('should add an edge from A to B', function() {
       graph.addEdge('A', 'B');
-      assert.lengthOf(graph.getVertex('A'), 1);
-      assert.lengthOf(graph.getVertex('B'), 0);
+      assert.strictEqual(graph.getSizeNeighbors('A'), 1);
+      assert.strictEqual(graph.getSizeNeighbors('B'), 0);
     });
 
     it('should add an edge from A to C', function() {
       graph.addEdge('A', 'C');
-      assert.lengthOf(graph.getVertex('A'), 2);
-      assert.lengthOf(graph.getVertex('C'), 0);
+      assert.strictEqual(graph.getSizeNeighbors('A'), 2);
+      assert.strictEqual(graph.getSizeNeighbors('C'), 0);
     });
 
     it('should add an edge from B to A and C to A', function() {
       graph.addEdge('B', 'A');
       graph.addEdge('C', 'A');
-      assert.lengthOf(graph.getVertex('B'), 1);
-      assert.lengthOf(graph.getVertex('C'), 1);
+      assert.strictEqual(graph.getSizeNeighbors('B'), 1);
+      assert.strictEqual(graph.getSizeNeighbors('C'), 1);
     });
+
+    it('should have a weighted edge A to D', function() {
+      var weight = 10;
+      var vertexA = graph.getVertex('A');
+      graph.addEdge('A', 'D', 10);
+      assert.strictEqual(vertexA);
+    });
+
   });
 
 });

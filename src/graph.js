@@ -41,12 +41,20 @@ Graph.prototype.getSize = function() {
   return Object.keys(this.graph).length;
 };
 
+Graph.prototype.getSizeNeighbors = function(vertex) {
+  return Object.keys(this.graph[vertex]).length;
+};
+
 Graph.prototype.hasVertex = function(name) {
   return this.graph.hasOwnProperty(name);
 };
 
+Graph.prototype.hasNeighbor = function(vertex, neighbor) {
+  return this.graph[vertex].hasOwnProperty(neighbor);
+};
+
 Graph.prototype.addVertex = function(name) {
-  this.graph[name] = [];
+  this.graph[name] = {};
 };
 
 Graph.prototype.getVertex = function(name) {
@@ -54,8 +62,7 @@ Graph.prototype.getVertex = function(name) {
 };
 
 Graph.prototype.addEdge = function(vertex, neighbor, weight) {
-  weight = weight || 0;
-  this.graph[vertex].push({neighbor: neighbor, weight: weight});
+  this.graph[vertex][neighbor] = weight || 0;
 };
 
 Graph.prototype.addNeighbors = function(vertex, neighbors) {

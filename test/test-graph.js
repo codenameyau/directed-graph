@@ -10,12 +10,20 @@ var assert = chai.assert;
  **********************/
 describe('Graph', function() {
 
-  describe('.defineVertices()', function() {
-    var graph = new Graph();
+  var data = {
+    'A': ['B', 'C', 'D'],
+    'B': ['C', 'D'],
+    'C': ['A', 'D'],
+    'D': ['A', 'B']
+  };
+
+  describe('.populateGraph()', function() {
+
+    var graph = new Graph(data);
 
     it('should create a new vertex', function() {
       graph.addVertex('A');
-      assert.strictEqual()
+      console.log(graph);
     });
 
     // it('should create a list of size neighbors', function() {

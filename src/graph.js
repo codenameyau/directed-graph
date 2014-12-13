@@ -1,13 +1,13 @@
 /*!
- * graph.js - Vertex
+ * graph.js - Graph
  * MIT License (c) 2014
  * https://github.com/codenameyau/graph.js
  *
  * Description:
  * Library for weighted directed graphs
  *
- * Implementation:
- * The Graph is implemented as an object of Vertex objects
+ * The Graph is implemented as followed:
+ * Graph (obj) -> Vertex (obj) -> Neighbor (obj) -> Weight (number)
  */
 'use strict';
 
@@ -45,20 +45,16 @@ Graph.prototype.getSizeNeighbors = function(vertex) {
   return Object.keys(this.graph[vertex]).length;
 };
 
+
+/************************
+ * Graph Vertex Methods *
+ ************************/
 Graph.prototype.hasVertex = function(name) {
   return this.graph.hasOwnProperty(name);
 };
 
-Graph.prototype.hasEdge = function(vertex, neighbor) {
-  return this.graph[vertex].hasOwnProperty(neighbor);
-};
-
 Graph.prototype.addVertex = function(name) {
   this.graph[name] = {};
-};
-
-Graph.prototype.addEdge = function(vertex, neighbor, weight) {
-  this.graph[vertex][neighbor] = weight || 0;
 };
 
 Graph.prototype.addNeighbors = function(vertex, neighbors) {
@@ -69,6 +65,26 @@ Graph.prototype.addNeighbors = function(vertex, neighbors) {
 
 Graph.prototype.getNeighbors = function(name) {
   return this.graph[name];
+};
+
+
+/**********************
+ * Graph Edge Methods *
+ **********************/
+Graph.prototype.hasEdge = function(vertex, neighbor) {
+  return this.graph[vertex].hasOwnProperty(neighbor);
+};
+
+Graph.prototype.addEdge = function(vertex, neighbor, weight) {
+  this.graph[vertex][neighbor] = weight || 0;
+};
+
+Graph.prototype.getWeight = function(vertex, neighbor) {
+  return this.graph[vertex][neighbor];
+};
+
+Graph.prototype.setWeight = function(vertex, neighbor, weight) {
+  this.graph[vertex][neighbor] = weight;
 };
 
 module.exports = Graph;

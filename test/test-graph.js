@@ -115,4 +115,19 @@ describe('Graph', function() {
     });
   });
 
+
+  describe('.setWeight()', function() {
+    var graph = new Graph();
+    graph.addVertex('A');
+    graph.addVertex('B');
+    graph.addEdge('A', 'B');
+
+    it('should change the weight from edge A to B', function() {
+      var newWeight = 100;
+      assert.strictEqual(graph.getWeight('A', 'B'), 0);
+      graph.setWeight('A', 'B', newWeight);
+      assert.strictEqual(graph.getWeight('A', 'B'), newWeight);
+    });
+  });
+
 });

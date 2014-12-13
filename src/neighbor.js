@@ -1,5 +1,5 @@
 /*!
- * graph.js - Graph
+ * graph.js - Neighbor
  * MIT License (c) 2014
  * https://github.com/codenameyau/graph.js
  *
@@ -8,11 +8,6 @@
  *
  * Implementation:
  * The Graph is implemented as an array of Neighbors
- * which contains a adjacency list of Vertices
+ * which contains a list of Vertices
  */
 'use strict';
-
-var vertex = require('./vertex');
-
-var vertexA = new vertex();
-vertexA.printValue();

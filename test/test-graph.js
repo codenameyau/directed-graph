@@ -11,10 +11,10 @@ var assert = chai.assert;
 describe('Graph', function() {
 
   var data = {
-    'A': ['B', 'C', 'D'],
+    'A': ['B', 'C'],
     'B': ['C', 'D'],
-    'C': ['A', 'D'],
-    'D': ['A', 'B']
+    'C': ['B', 'D'],
+    'D': ['B', 'C']
   };
 
 
@@ -47,22 +47,54 @@ describe('Graph', function() {
 
     it('should populate the graph with the specified vertices', function() {
       assert.strictEqual(graph.getSize(), 4);
+      assert.property(graph.graph, 'A');
+      assert.property(graph.graph, 'B');
+      assert.property(graph.graph, 'C');
+      assert.property(graph.graph, 'D');
     });
   });
 
 
   describe('.addVertex()', function() {
-    var graph = new Graph(data);
+    var graph = new Graph();
+
+    it('should create a new vertex if it does not exist', function() {
+      assert.strictEqual(graph.getSize(), 0);
+      graph.addVertex('A');
+      assert.strictEqual(graph.getSize(), 1);
+      assert.property(graph.graph, 'A');
+    });
 
     it('should not create a new vertex that already exists', function() {
       graph.addVertex('A');
-      assert.strictEqual(graph.getSize(), 4);
+      assert.strictEqual(graph.getSize(), 1);
+    });
+  });
+
+
+  describe('.addEdge()', function() {
+    var graph = new Graph();
+    graph.addVertex('A');
+    graph.addVertex('B');
+    graph.addVertex('C');
+
+    it('should add an edge from A to B', function() {
+      graph.addEdge('A', 'B');
+      assert.lengthOf(graph.getVertex('A'), 1);
+      assert.lengthOf(graph.getVertex('B'), 0);
     });
 
-    it('should create a new vertex if it does not exist', function() {
-      graph.addVertex('Z');
-      assert.strictEqual(graph.getSize(), 5);
-      assert.property(graph.graph, 'Z');
+    it('should add an edge from A to C', function() {
+      graph.addEdge('A', 'C');
+      assert.lengthOf(graph.getVertex('A'), 2);
+      assert.lengthOf(graph.getVertex('C'), 0);
+    });
+
+    it('should add an edge from B to A and C to A', function() {
+      graph.addEdge('B', 'A');
+      graph.addEdge('C', 'A');
+      assert.lengthOf(graph.getVertex('B'), 1);
+      assert.lengthOf(graph.getVertex('C'), 1);
     });
   });
 

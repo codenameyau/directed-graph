@@ -49,9 +49,13 @@ Graph.prototype.addVertex = function(name) {
   this.graph[name] = [];
 };
 
+Graph.prototype.getVertex = function(name) {
+  return this.graph[name];
+};
+
 Graph.prototype.addEdge = function(vertex, neighbor, weight) {
   weight = weight || 0;
-  this.graph[vertex].append({weight: weight, neighbor: neighbor});
+  this.graph[vertex].push({neighbor: neighbor, weight: weight});
 };
 
 Graph.prototype.addNeighbors = function(vertex, neighbors) {

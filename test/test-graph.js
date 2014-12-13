@@ -12,7 +12,7 @@ describe('Graph', function() {
 
   var data = {
     'A': ['B', 'C'],
-    'B': ['C', 'D'],
+    'B': ['C', 'A'],
     'C': ['B', 'D'],
     'D': ['B', 'C']
   };
@@ -51,6 +51,17 @@ describe('Graph', function() {
       assert.property(graph.graph, 'B');
       assert.property(graph.graph, 'C');
       assert.property(graph.graph, 'D');
+    });
+
+    it('should create edges between vertices and their neighors', function() {
+      assert.isTrue(graph.hasEdge('A', 'B'));
+      assert.isTrue(graph.hasEdge('A', 'C'));
+      assert.isTrue(graph.hasEdge('B', 'C'));
+      assert.isTrue(graph.hasEdge('B', 'A'));
+      assert.isTrue(graph.hasEdge('C', 'B'));
+      assert.isTrue(graph.hasEdge('C', 'D'));
+      assert.isTrue(graph.hasEdge('D', 'B'));
+      assert.isTrue(graph.hasEdge('D', 'C'));
     });
   });
 
@@ -127,6 +138,16 @@ describe('Graph', function() {
       assert.strictEqual(graph.getWeight('A', 'B'), 0);
       graph.setWeight('A', 'B', newWeight);
       assert.strictEqual(graph.getWeight('A', 'B'), newWeight);
+    });
+  });
+
+
+  describe('.removeVertex()', function() {
+    var graph = new Graph(data);
+
+    it('should make sure that the vertex is connected', function() {
+      // assert.isTrue(graph.hasEdge('A', 'B'));
+      // assert.isTrue(graph.hasEdge('A', 'C'));
     });
   });
 

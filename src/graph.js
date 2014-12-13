@@ -29,7 +29,7 @@ Graph.prototype.populateGraph = function(neighbors) {
     }
 
     // Connect vertex to neighbors
-    this.addNeighbors(key, neighbors);
+    this.addNeighbors(key, neighbors[key]);
   }
 };
 
@@ -37,6 +37,10 @@ Graph.prototype.populateGraph = function(neighbors) {
 /************************
  * Graph Public Methods *
  ************************/
+Graph.prototype.getGraph = function() {
+  return this.graph;
+};
+
 Graph.prototype.getSize = function() {
   return Object.keys(this.graph).length;
 };
@@ -55,6 +59,10 @@ Graph.prototype.hasVertex = function(name) {
 
 Graph.prototype.addVertex = function(name) {
   this.graph[name] = {};
+};
+
+Graph.prototype.removeVertex = function(name) {
+
 };
 
 Graph.prototype.addNeighbors = function(vertex, neighbors) {
@@ -77,6 +85,10 @@ Graph.prototype.hasEdge = function(vertex, neighbor) {
 
 Graph.prototype.addEdge = function(vertex, neighbor, weight) {
   this.graph[vertex][neighbor] = weight || 0;
+};
+
+Graph.prototype.removeEdge = function(vertex) {
+
 };
 
 Graph.prototype.getWeight = function(vertex, neighbor) {

@@ -20,8 +20,8 @@ function Vertex(weight) {
   this.weight = weight;
 }
 
-Vertex.prototype.printValue = function() {
-  console.log(1);
+Vertex.prototype.setWeight = function(value) {
+  this.weight = value;
 };
 
 module.exports = Vertex;

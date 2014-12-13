@@ -29,10 +29,7 @@ Graph.prototype.populateGraph = function(neighbors) {
     }
 
     // Connect vertex to neighbors
-    for (var i=0, len=neighbors.length; i<len; i++) {
-      this.addEdge(key, neighbors[i]);
-    }
-
+    this.addNeighbors(key, neighbors);
   }
 };
 
@@ -40,6 +37,10 @@ Graph.prototype.populateGraph = function(neighbors) {
 /************************
  * Graph Public Methods *
  ************************/
+Graph.prototype.getSize = function() {
+  return Object.keys(this.graph).length;
+};
+
 Graph.prototype.hasVertex = function(name) {
   return this.graph.hasOwnProperty(name);
 };
@@ -51,6 +52,12 @@ Graph.prototype.addVertex = function(name) {
 Graph.prototype.addEdge = function(vertex, neighbor, weight) {
   weight = weight || 0;
   this.graph[vertex].append({weight: weight, neighbor: neighbor});
+};
+
+Graph.prototype.addNeighbors = function(vertex, neighbors) {
+  for (var i=0, len=neighbors.length; i<len; i++) {
+    this.addEdge(vertex, neighbors[i]);
+  }
 };
 
 module.exports = Graph;

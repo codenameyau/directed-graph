@@ -17,24 +17,53 @@ describe('Graph', function() {
     'D': ['A', 'B']
   };
 
-  describe('.populateGraph()', function() {
 
+  describe('.getSize()', function() {
     var graph = new Graph(data);
 
-    it('should create a new vertex', function() {
-      graph.addVertex('A');
-      console.log(graph);
+    it('should return the number of vertices in the graph', function() {
+      assert.strictEqual(graph.getSize(), 4);
     });
 
-    // it('should create a list of size neighbors', function() {
-    //   assert.strictEqual(neighbors.length, vertices.length);
-    // });
+    it('should not increase adding a vertex that already exists', function() {
+      graph.addVertex('A');
+      assert.strictEqual(graph.getSize(), 4);
+    });
 
-    // it('should create a list of Vertex objects', function() {
-    //   var vertex = vertices[0];
-    //   assert.property(vertex, 'weight');
-    //   assert.property(vertex, 'neighbors');
-    // });
-
+    it('should be increased by 1 when a new vertex is added', function() {
+      graph.addVertex('F');
+      assert.strictEqual(graph.getSize(), 5);
+    });
   });
+
+
+  describe('.populateGraph()', function() {
+    var empty = new Graph();
+    var graph = new Graph(data);
+
+    it('should be empty if the graph argument is not specified', function() {
+      assert.strictEqual(empty.getSize(), 0);
+    });
+
+    it('should populate the graph with the specified vertices', function() {
+      assert.strictEqual(graph.getSize(), 4);
+    });
+  });
+
+
+  describe('.addVertex()', function() {
+    var graph = new Graph(data);
+
+    it('should not create a new vertex that already exists', function() {
+      graph.addVertex('A');
+      assert.strictEqual(graph.getSize(), 4);
+    });
+
+    it('should create a new vertex if it does not exist', function() {
+      graph.addVertex('Z');
+      assert.strictEqual(graph.getSize(), 5);
+      assert.property(graph.graph, 'Z');
+    });
+  });
+
 });

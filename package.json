@@ -1,14 +1,14 @@
 {
-  "name": "graph.js",
+  "name": "directed-graph",
   "version": "1.0.0",
   "description": "node package for weighted directed graphs",
-  "main": "lib",
+  "main": "src",
   "scripts": {
     "test": "mocha test"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/codenameyau/graph.js.git"
+    "url": "https://github.com/codenameyau/directed-graph.git"
   },
   "keywords": [
     "directed",
@@ -20,9 +20,9 @@
   "author": "Jorge Yau <jyau01@citymail.cuny.edu>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/codenameyau/graph.js/issues"
+    "url": "https://github.com/codenameyau/directed-graph/issues"
   },
-  "homepage": "https://github.com/codenameyau/graph.js",
+  "homepage": "https://github.com/codenameyau/directed-graph",
   "devDependencies": {
     "chai": "^1.10.0",
     "gulp": "^3.8.10",

@@ -145,9 +145,31 @@ describe('Graph', function() {
   describe('.removeVertex()', function() {
     var graph = new Graph(data);
 
-    it('should make sure that the vertex is connected', function() {
-      // assert.isTrue(graph.hasEdge('A', 'B'));
-      // assert.isTrue(graph.hasEdge('A', 'C'));
+    it('should make sure that vertex B has connected edges', function() {
+      assert.isTrue(graph.hasEdge('A', 'B'));
+      assert.isTrue(graph.hasEdge('B', 'C'));
+      assert.isTrue(graph.hasEdge('B', 'A'));
+      assert.isTrue(graph.hasEdge('C', 'B'));
+      assert.isTrue(graph.hasEdge('D', 'B'));
+      assert.strictEqual(graph.getSizeNeighbors('A'), 2);
+      assert.strictEqual(graph.getSizeNeighbors('C'), 2);
+      assert.strictEqual(graph.getSizeNeighbors('D'), 2);
+    });
+
+    it('should remove vertex B from the graph', function() {
+      graph.removeVertex('B');
+      assert.isFalse(graph.hasVertex('B'));
+    });
+
+    it('should remove all edges connected to the vertex', function() {
+      assert.isFalse(graph.hasEdge('A', 'B'));
+      assert.isFalse(graph.hasEdge('B', 'C'));
+      assert.isFalse(graph.hasEdge('B', 'A'));
+      assert.isFalse(graph.hasEdge('C', 'B'));
+      assert.isFalse(graph.hasEdge('D', 'B'));
+      assert.strictEqual(graph.getSizeNeighbors('A'), 1);
+      assert.strictEqual(graph.getSizeNeighbors('C'), 1);
+      assert.strictEqual(graph.getSizeNeighbors('D'), 1);
     });
   });
 

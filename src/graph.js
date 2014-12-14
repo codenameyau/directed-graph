@@ -42,11 +42,11 @@ Graph.prototype.getGraph = function() {
 };
 
 Graph.prototype.getSize = function() {
-  return Object.keys(this.graph).length;
+  return this.getObjectSize(this.graph);
 };
 
 Graph.prototype.getSizeNeighbors = function(vertex) {
-  return Object.keys(this.graph[vertex]).length;
+  return this.getObjectSize(this.graph[vertex]);
 };
 
 
@@ -98,5 +98,14 @@ Graph.prototype.getWeight = function(vertex, neighbor) {
 Graph.prototype.setWeight = function(vertex, neighbor, weight) {
   this.graph[vertex][neighbor] = weight;
 };
+
+
+/**************************
+ * Graph Internal Methods *
+ **************************/
+Graph.prototype.getObjectSize = function(object) {
+  return Object.keys(object).length;
+};
+
 
 module.exports = Graph;

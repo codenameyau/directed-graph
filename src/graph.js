@@ -43,8 +43,21 @@ Graph.prototype.getSizeNeighbors = function(vertex) {
   return this.getObjectSize(this.graph[vertex]);
 };
 
-Graph.prototype.BFS = function(start, target) {
-
+Graph.prototype.pathExists = function(start, target) {
+  // Perform BFS
+  var queue = [start];
+  var visited = {start: 1};
+  while (queue.length > 0) {
+    var current = queue.shift();
+    if (current === target) { return true; }
+    for (var node in this.graph[current]) {
+      if (!visited.hasOwnProperty(node)) {
+        visited[node] = 1;
+        queue.push(node);
+      }
+    }
+  }
+  return false;
 };
 
 

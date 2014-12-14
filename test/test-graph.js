@@ -17,13 +17,6 @@ describe('Graph', function() {
     'D': ['B', 'C']
   };
 
-  var search = {
-    'A': ['B', 'C'],
-    'B': ['D', 'E'],
-    'C': ['F', 'G'],
-    'E': ['H'],
-  };
-
   describe('.getSize()', function() {
     var graph = new Graph(data);
 
@@ -199,9 +192,35 @@ describe('Graph', function() {
   });
 
 
-  describe('.BFS()', function() {
-    var graph = new Graph(search);
-    console.log(graph);
+  describe('.pathExists()', function() {
+    var graph = new Graph({
+      'A': ['B', 'C'],
+      'B': ['D', 'E'],
+      'C': ['F', 'G'],
+      'E': ['H']
+    });
+
+    it('should return true if the start is equal to the target', function() {
+      assert.isTrue(graph.pathExists('A', 'A'));
+      assert.isTrue(graph.pathExists('F', 'F'));
+    });
+
+    it('should return true if a path exists from start to target', function() {
+      assert.isTrue(graph.pathExists('A', 'B'));
+      assert.isTrue(graph.pathExists('A', 'F'));
+      assert.isTrue(graph.pathExists('A', 'G'));
+    });
+
+    it('should return false if a path does not exist', function() {
+      assert.isFalse(graph.pathExists('B', 'A'));
+      assert.isFalse(graph.pathExists('F', 'A'));
+    });
+
+    it('should return false if a path is removed', function() {
+      graph.removeEdge('A', 'C');
+      assert.isFalse(graph.pathExists('A', 'F'));
+      assert.isFalse(graph.pathExists('A', 'G'));
+    });
   });
 
 });

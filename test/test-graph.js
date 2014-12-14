@@ -168,4 +168,28 @@ describe('Graph', function() {
     });
   });
 
+
+  describe('.removeEdge()', function() {
+    var graph = new Graph(data);
+
+    it('should assert that vertices A and B are connected', function() {
+      assert.isTrue(graph.hasEdge('A', 'B'));
+      assert.isTrue(graph.hasEdge('B', 'A'));
+      assert.strictEqual(graph.getSizeNeighbors('A'), 2);
+      assert.strictEqual(graph.getSizeNeighbors('B'), 2);
+    });
+
+    it('should remove the edge from A to B', function() {
+      graph.removeEdge('A', 'B');
+      assert.isFalse(graph.hasEdge('A', 'B'));
+      assert.strictEqual(graph.getSizeNeighbors('A'), 1);
+    });
+
+    it('should remove the edge from B to A', function() {
+      graph.removeEdge('B', 'A');
+      assert.isFalse(graph.hasEdge('B', 'A'));
+      assert.strictEqual(graph.getSizeNeighbors('B'), 1);
+    });
+  });
+
 });

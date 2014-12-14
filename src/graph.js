@@ -22,13 +22,7 @@ function Graph(neighbors) {
 
 Graph.prototype.populateGraph = function(neighbors) {
   for (var key in neighbors) {
-
-    // Create new vertex if not exist
-    if (!this.hasVertex(key)) {
-      this.addVertex(key);
-    }
-
-    // Create edges from vertex to neighbors
+    this.addVertex(key);
     this.addNeighbors(key, neighbors[key]);
   }
 };
@@ -49,7 +43,7 @@ Graph.prototype.getSizeNeighbors = function(vertex) {
   return this.getObjectSize(this.graph[vertex]);
 };
 
-Graph.prototype.pathExists = function(start, target) {
+Graph.prototype.BFS = function(start, target) {
 
 };
 
@@ -62,7 +56,9 @@ Graph.prototype.hasVertex = function(name) {
 };
 
 Graph.prototype.addVertex = function(name) {
-  this.graph[name] = {};
+  if (!this.hasVertex(name)) {
+    this.graph[name] = {};
+  }
 };
 
 Graph.prototype.removeVertex = function(name) {
@@ -76,7 +72,9 @@ Graph.prototype.removeVertex = function(name) {
 
 Graph.prototype.addNeighbors = function(vertex, neighbors) {
   for (var i=0, len=neighbors.length; i<len; i++) {
-    this.addEdge(vertex, neighbors[i]);
+    var neighbor = neighbors[i];
+    this.addVertex(neighbor);
+    this.addEdge(vertex, neighbor);
   }
 };
 

@@ -17,6 +17,12 @@ describe('Graph', function() {
     'D': ['B', 'C']
   };
 
+  var search = {
+    'A': ['B', 'C'],
+    'B': ['D', 'E'],
+    'C': ['F', 'G'],
+    'E': ['H'],
+  };
 
   describe('.getSize()', function() {
     var graph = new Graph(data);
@@ -190,6 +196,12 @@ describe('Graph', function() {
       assert.isFalse(graph.hasEdge('B', 'A'));
       assert.strictEqual(graph.getSizeNeighbors('B'), 1);
     });
+  });
+
+
+  describe('.BFS()', function() {
+    var graph = new Graph(search);
+    console.log(graph);
   });
 
 });

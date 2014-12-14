@@ -62,7 +62,12 @@ Graph.prototype.addVertex = function(name) {
 };
 
 Graph.prototype.removeVertex = function(name) {
-
+  delete this.graph[name];
+  for (var vertex in this.graph) {
+    if (this.graph[vertex].hasOwnProperty(name)) {
+      delete this.graph[vertex][name];
+    }
+  }
 };
 
 Graph.prototype.addNeighbors = function(vertex, neighbors) {

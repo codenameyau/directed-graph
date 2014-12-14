@@ -162,11 +162,6 @@ describe('Graph', function() {
     });
 
     it('should remove all edges connected to the vertex', function() {
-      assert.isFalse(graph.hasEdge('A', 'B'));
-      assert.isFalse(graph.hasEdge('B', 'C'));
-      assert.isFalse(graph.hasEdge('B', 'A'));
-      assert.isFalse(graph.hasEdge('C', 'B'));
-      assert.isFalse(graph.hasEdge('D', 'B'));
       assert.strictEqual(graph.getSizeNeighbors('A'), 1);
       assert.strictEqual(graph.getSizeNeighbors('C'), 1);
       assert.strictEqual(graph.getSizeNeighbors('D'), 1);
